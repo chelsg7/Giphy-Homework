@@ -23,7 +23,7 @@ var createButton = function(){
         $('#buttonDiv').append("<button class='btn btn-dark btn-lrg m-1 buttonTopic' id = "+ buttonCount + ">" + topics[i] + "</button>");
         buttonCount++;
         var allTopics = topics[i];
-        console.log(allTopics);
+       // console.log(allTopics);
     };
 };
 
@@ -59,6 +59,7 @@ $('.buttonTopic').on("click", this, function(event){
             console.log(userInput);
             var rating = results[i].rating;
         //  console.log(rating);
+            var stillImageChoice = results[i].images.fixed_height_still.url
             var imageChoice = results[i].images.fixed_height.url;
             var imagePut = $("<h2> Rating : " + rating + "</h2>" + "<img src = " + imageChoice + ">");
 
