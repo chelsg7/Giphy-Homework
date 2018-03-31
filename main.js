@@ -8,16 +8,6 @@ var buttonDiv = $('#buttonDiv');
 var imageDiv = $('#imageDiv');
 var buttonCount = 0;
 
-// var createButton = function(){
-//     for(i = 0; i< topics.length; i++){
-//         $('#buttonDiv').append(
-//             "<button class='btn btn-dark btn-lrg m-1' id='buttonTopic'>" + topics[i] + "</button>"
-//         )
-//         userInput = topics[i];
-//         console.log(userInput)
-//     }
-// }
-
 var createButton = function(){
     for(i = 0; i< topics.length; i++){
         $('#buttonDiv').append("<button class='btn btn-dark btn-lrg m-1 buttonTopic' id = "+ buttonCount + ">" + topics[i] + "</button>");
@@ -61,13 +51,29 @@ $('.buttonTopic').on("click", this, function(event){
         //  console.log(rating);
             var stillImageChoice = results[i].images.fixed_height_still.url
             var imageChoice = results[i].images.fixed_height.url;
-            var imagePut = $("<h2> Rating : " + rating + "</h2>" + "<img src = " + imageChoice + ">");
-
+            var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
             var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
         //  var imageHeader = $("<h1>" + userInput + "</h1>")
         //  $(imageHolder).append(imageHeader);
             $(imageHolder).append(imagePut);
             $('#imageDiv').prepend(imageHolder);
+
+            $(".gif").on("click", function() {
+                // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+                var state = $(this).attr("data-state");
+                // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+                // Then, set the image's data-state to animate
+                // Else set src to the data-still value
+                if (state === 'still') {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                } else {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                }
+            }); // end of .gif click
+
+
         }// this is technically end of rating
     } // end of for statement with results & rating inside
 }) // end of .then
@@ -80,11 +86,19 @@ $("#userSearch").click(function(event){
         // Link to what user puts in search box
         var search = $("#searchTerm").val();
         console.log(search);
-        topics.push(search);
-        console.log(topics);
         var userChoice = search;
-        $('#buttonDiv').append("<button class='btn btn-dark btn-lrg m-1 buttonTopic' id = " + buttonCount + ">" + userChoice + "</button>");
-        buttonCount++;
+
+        // WHY isn't this working ?
+        if (userChoice.indexOf(topics) === -1){
+            topics.push(userChoice);
+            console.log(topics);
+            $('#buttonDiv').append("<button class='btn btn-dark btn-lrg m-1 buttonTopic' id = " + buttonCount + ">" + userChoice + "</button>");
+            buttonCount++;
+        } else {
+            alert("there's a button for that!")
+        }
+        
+        // there's a but here where it will append the user button automatically after you make it when you click any other button.... why
 
         $('.buttonTopic').on("click", this, function(event){
             console.log("inside")
@@ -111,17 +125,38 @@ $("#userSearch").click(function(event){
                         //  console.log(rating);
                         var stillImageChoice = results[i].images.fixed_height_still.url
                         var imageChoice = results[i].images.fixed_height.url;
-                        var imagePut = $("<img src = " + imageChoice + ">" + "<h2> Rating : " + rating + "</h2>");
+                        var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
                         var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
+
+
                         $(imageHolder).append(imagePut);
                     // var imageHeader = $("<div class = 'mx-auto'> <h1 class = ' text-center'" +  ">" + userChoice + "</h1> </div>")
                     //  $(imageHeader).append(imageHolder);
                     $('#imageDiv').prepend(imageHolder);
+
+                    $(".gif").on("click", function() {
+                        // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+                        var state = $(this).attr("data-state");
+                        // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+                        // Then, set the image's data-state to animate
+                        // Else set src to the data-still value
+                        if (state === 'still') {
+                            $(this).attr("src", $(this).attr("data-animate"));
+                            $(this).attr("data-state", "animate");
+                        } else {
+                            $(this).attr("src", $(this).attr("data-still"));
+                            $(this).attr("data-state", "still");
+                        }
+                    }); // end of .gif click
+
+
+
+
                     }// this is technically end of rating
                 } // end of for statement with results & rating inside
             }) // end of .then
 
-        });
-    });
+        }); // end of array button click
+    }); // end user search button click
 
 }); // end doc ready
