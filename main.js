@@ -134,6 +134,8 @@ $("#userSearch").click(function(event){
                     //  $(imageHeader).append(imageHolder);
                     $('#imageDiv').prepend(imageHolder);
 
+                    //WHY isn't this working ??
+
                     $(".gif").on("click", function() {
                         // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
                         var state = $(this).attr("data-state");
