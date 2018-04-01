@@ -133,10 +133,10 @@ $("#userSearch").click(function(event){
         // Else set src to the data-still value
         if (state === 'still') {
             $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state ", " animate");
+            $(this).attr("data-state", " animate");
         } else {
             $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state ", " still");
+            $(this).attr("data-state", " still");
         }
     });
 
