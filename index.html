@@ -26,15 +26,23 @@
         Giphy Homework
     </title>
 </head>
-<body class="container-flex bg-info">
-    <section class="row bg-secondary py-5">
+<body class="container-flex" id="whole">
+    <section class="row py-5"  id= "head">
         <section class="container">
-            <h1 class="display-4 text-center text-white d-block">
-                Giphy Homework
-            </h1>
-            <div class="bg-light d-block col-10 mx-auto mt-5 py-3 text-center card border-info">
-                <p class= "h4">
-                    Try one of these buttons before adding your own! 
+            <h1 class="display-4 text-center d-block textHead">
+                    <i class="fas fa-question-circle"></i>
+                    Giphy Homework
+                    <i class="fas fa-question-circle"></i>
+                </h1>
+                <p class="mx-auto text-center pt-3 textHead">
+                    This page queries the giphy database and returns still gifs that can be clicked on to animate. 
+                    <br>
+                    Only gifs rated G and PG will be displayed.
+                </p>
+            <div class="d-block col-10 mx-auto mt-5 py-3 text-center card border tan">
+                <p class= "h4 orange">
+                        <i class="fas fa-clipboard-list"></i>
+                        Try one of these buttons before adding your own! 
                 </p>
                 <div class = "mx-auto" id="buttonDiv">
                     <!-- Buttons will append here -->
@@ -43,27 +51,28 @@
         </section>
     </section>
         <section class = "row container mx-auto">
-            <section class= "col-10 col-md-4 my-5 py-3 mx-auto card">
-                <p class="text-center h4">
-                        What do you want to see?
-                        <i class="fas fa-question-circle"></i>
+            <section class= "col-10 col-md-4 my-5 py-3 mx-auto card tan">
+                <p class="text-center h4 orange">
+                        What do you want to see ?
                 </p>
-                <form>
+                <form class="text-center">
                     <div class="form-group m-2">
-                        <label for="userSearch">
+                        <!-- <label for="userSearch">
                             Search
-                        </label>
+                        </label> -->
                         <input type="text" class="form-control" id="searchTerm" placeholder="search for a new button">
                     </div>
-                    <button type="submit" class="btn btn-outline-primary btn-lg btn-block text-center" id="userSearch">
+                    <button type="submit" class="btn btn-outline-dark btn-lg btn-block text-center" id="userSearch">
                         Search
                     </button>
                     </form>
             </section>
-            <section class=" col-12 col-md-7 my-5 mx-auto card py-3 h4">
-                <p class="text-center">
-                    Images will appear below here:
-                </p>
+            <section class=" col-12 col-md-7 my-5 mx-auto card  tan">
+                <p class="text-center orange h4 py-3">
+                        <i class="fas fa-images"></i>
+                        Images will appear below
+                        <i class="fas fa-images"></i>
+                    </p>
                 <div class="mx-auto py-3" id="imageDiv">
                     <!-- GIFs returned from site will append here -->
                 </div>

@@ -10,7 +10,7 @@ var buttonCount = 0;
 
 var createButton = function(){
     for(i = 0; i< topics.length; i++){
-        $('#buttonDiv').append("<button class='btn btn-outline-danger btn-lg m-1 buttonTopic' id = "+ buttonCount + ">" + topics[i] + "</button>");
+        $('#buttonDiv').append("<button class='btn btn-outline-dark btn-lg m-1 buttonTopic' id = "+ buttonCount + "> " + "<i class='fas fa-times-circle'></i> " + topics[i] + "</button>");
         buttonCount++;
         var allTopics = topics[i];
        // console.log(allTopics);
@@ -27,11 +27,11 @@ $('.buttonTopic').on("click", this, function(event){
     console.log("inside")
     var userChoice = event.target.id;
     console.log(userChoice);
-    var userInput = topics[userChoice];
-    console.log(userInput);
+    var userInputButton = topics[userChoice];
+    console.log(userInputButton);
     
     
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInput +"&limit=15" + "&api_key=wlD16JyZKmFHTkFbwCyx2SRxbMKnEXNJ";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInputButton +"&limit=15" + "&api_key=wlD16JyZKmFHTkFbwCyx2SRxbMKnEXNJ";
     // Performing our AJAX GET request
     $.ajax({
         url: queryURL,
@@ -52,7 +52,7 @@ $('.buttonTopic').on("click", this, function(event){
             var stillImageChoice = results[i].images.fixed_height_still.url
             var imageChoice = results[i].images.fixed_height.url;
             var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
-            var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
+            var imageHolder = $("<div class = " + " 'text-center  " + userInputButton + " ' "+  ">" + "</div>");
         //  var imageHeader = $("<h1>" + userInput + "</h1>")
         //  $(imageHolder).append(imageHeader);
             $(imageHolder).append(imagePut);
@@ -77,7 +77,7 @@ $("#userSearch").click(function(event){
         if ((topics.indexOf(userChoice) === -1)){
             topics.push(userChoice);
             console.log(topics);
-            $('#buttonDiv').append("<button class='btn btn-outline-danger btn-lg m-1 buttonTopicUser' id = " + buttonCount + ">" + userChoice + "</button>");
+            $('#buttonDiv').append("<button class='btn btn-outline-dark btn-lg m-1 buttonTopicUser' id = " + buttonCount + ">" + "<i class='fas fa-times-circle'></i> " + userChoice + "</button>");
             buttonCount++;
         } else {
             alert("there's already a button for that!")
