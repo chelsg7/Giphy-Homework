@@ -58,21 +58,6 @@ $('.buttonTopic').on("click", this, function(event){
             $(imageHolder).append(imagePut);
             $('#imageDiv').prepend(imageHolder);
 
-            $(".gif").on("click", function() {
-                // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-                var state = $(this).attr("data-state");
-                // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-                // Then, set the image's data-state to animate
-                // Else set src to the data-still value
-                if (state === 'still') {
-                    $(this).attr("src", $(this).attr("data-animate"));
-                    $(this).attr("data-state", "animate");
-                } else {
-                    $(this).attr("src", $(this).attr("data-still"));
-                    $(this).attr("data-state", "still");
-                }
-            }); // end of .gif click
-
 
         }// this is technically end of rating
     } // end of for statement with results & rating inside
@@ -89,18 +74,16 @@ $("#userSearch").click(function(event){
         var userChoice = search;
 
         // WHY isn't this working ?
-        if (userChoice.indexOf(topics) === -1){
+        if ((topics.indexOf(userChoice) === -1)){
             topics.push(userChoice);
             console.log(topics);
-            $('#buttonDiv').append("<button class='btn btn-dark btn-lrg m-1 buttonTopic' id = " + buttonCount + ">" + userChoice + "</button>");
+            $('#buttonDiv').append("<button class='btn btn-dark btn-lrg m-1 buttonTopicUser' id = " + buttonCount + ">" + userChoice + "</button>");
             buttonCount++;
         } else {
-            alert("there's a button for that!")
-        }
-        
-        // there's a but here where it will append the user button automatically after you make it when you click any other button.... why
+            alert("there's already a button for that!")
+        };
 
-        $('.buttonTopic').on("click", this, function(event){
+        $('.buttonTopicUser').on("click", this, function(event){
             console.log("inside")
             var userInput = event.target.id;
             console.log(userInput);
@@ -133,32 +116,28 @@ $("#userSearch").click(function(event){
                     // var imageHeader = $("<div class = 'mx-auto'> <h1 class = ' text-center'" +  ">" + userChoice + "</h1> </div>")
                     //  $(imageHeader).append(imageHolder);
                     $('#imageDiv').prepend(imageHolder);
-
-                    //WHY isn't this working ??
-
-                    $(".gif").on("click", function() {
-                        // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-                        var state = $(this).attr("data-state");
-                        // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-                        // Then, set the image's data-state to animate
-                        // Else set src to the data-still value
-                        if (state === 'still') {
-                            $(this).attr("src", $(this).attr("data-animate"));
-                            $(this).attr("data-state", "animate");
-                        } else {
-                            $(this).attr("src", $(this).attr("data-still"));
-                            $(this).attr("data-state", "still");
-                        }
-                    }); // end of .gif click
-
-
-
-
                     }// this is technically end of rating
                 } // end of for statement with results & rating inside
             }) // end of .then
 
         }); // end of array button click
     }); // end user search button click
+
+
+    $("#imageDiv").on("click", "img", function() {
+        // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+        var state = $(this).attr("data-state");
+        console.log("state = " + state);
+        // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+        // Then, set the image's data-state to animate
+        // Else set src to the data-still value
+        if (state === 'still') {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state ", " animate");
+        } else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state ", " still");
+        }
+    });
 
 }); // end doc ready
