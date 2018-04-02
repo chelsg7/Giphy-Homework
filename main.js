@@ -13,7 +13,7 @@ var createButton = function(){
         $('#buttonDiv').append("<button class='btn btn-outline-dark btn-lg m-1 buttonTopic' id = "+ buttonCount + "> " + "<i class='fas fa-times-circle'></i> " + topics[i] + "</button>");
         buttonCount++;
         var allTopics = topics[i];
-       // console.log(allTopics);
+        // console.log(allTopics);
     };
 };
 
@@ -43,7 +43,7 @@ $('.buttonTopic').on("click", this, function(event){
     var results = response.data;
     console.log(results);
 
-    for (var i = 0; i < results.length; i++) {
+    for (var i = 0; i < 10; i++) {
         // Only taking action if the photo has an appropriate rating
         if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
             console.log(userInput);
