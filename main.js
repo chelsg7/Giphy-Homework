@@ -27,11 +27,11 @@ $('.buttonTopic').on("click", this, function(event){
     console.log("inside")
     var userChoice = event.target.id;
     console.log(userChoice);
-    var userInputButton = topics[userChoice];
-    console.log(userInputButton);
+    var userInput = topics[userChoice];
+    console.log(userInput);
     
     
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInputButton +"&limit=30" + "&api_key=wlD16JyZKmFHTkFbwCyx2SRxbMKnEXNJ";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInput +"&limit=30" + "&api_key=wlD16JyZKmFHTkFbwCyx2SRxbMKnEXNJ";
     // Performing our AJAX GET request
     $.ajax({
         url: queryURL,
@@ -52,7 +52,7 @@ $('.buttonTopic').on("click", this, function(event){
             var stillImageChoice = results[i].images.fixed_height_still.url
             var imageChoice = results[i].images.fixed_height.url;
             var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
-            var imageHolder = $("<div class = " + " 'text-center  " + userInputButton + " ' "+  ">" + "</div>");
+            var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
         //  var imageHeader = $("<h1>" + userInput + "</h1>")
         //  $(imageHolder).append(imageHeader);
             $(imageHolder).append(imagePut);
@@ -73,7 +73,8 @@ $("#userSearch").click(function(event){
         console.log(search);
         var userChoice = search;
 
-        // WHY isn't this working ?
+        
+
         if ((topics.indexOf(userChoice) === -1)){
             topics.push(userChoice);
             console.log(topics);
@@ -86,8 +87,8 @@ $("#userSearch").click(function(event){
         $('.buttonTopicUser').on("click", this, function(event){
             console.log("inside")
             var userInput = event.target.id;
-            console.log(userInput);
-            console.log(userChoice);
+            // console.log(userInput); //number
+            //console.log(userChoice); //name
 
 
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userChoice +"&limit=30" + "&api_key=wlD16JyZKmFHTkFbwCyx2SRxbMKnEXNJ";
@@ -100,16 +101,54 @@ $("#userSearch").click(function(event){
             .then(function(response) {
                 // Storing an array of results in the results variable
                 var results = response.data;
-                console.log(results);
 
-                // if ((results[i].rating === "g" && results[i].rating === "pg") !== 10) {
-                //     console.log('Not 10 results!');
-                //     console.log(userChoice);
-                //     var rating = results[i].rating;
-                //     console.log(rating);
-                // }
 
-                for (var i = 0; i < 10; i++) {
+                // I would like to push each indivudual result to an array based on rating. If the array for all ages is not greater than 10, I want to remove the button and not append the images. If the array for all ages is greater than 10, I want to append the images with the rating like normal
+                /* 
+                var adult = [];
+                var allAges = [];
+                for (var i = 0; i < results.length; i++) {
+                    //console.log(userChoice);
+                    var rating = results[i].rating;
+                    //console.log(rating);
+                    if (rating === "g" || rating === "pg"){
+                        allAges.push(results[i]);
+                        console.log(allAges.length);
+                    } else if (rating === "r" || rating === "pg-13"){
+                        adult.push(results[i]);
+                        console.log(adult.length);
+                    } // end of first if statement
+
+                    if(allAges.length < 10){
+                        console.log('BAD!');
+                        console.log(userInput); //number
+                        console.log(userChoice); //name
+                    } else if (allAges.length > 10){
+                        // console.log(userChoice);
+                        var rating = results[i].rating;
+                        console.log(rating);
+                        var stillImageChoice = results[i].images.fixed_height_still.url
+                        var imageChoice = results[i].images.fixed_height.url;
+                        var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
+                        var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
+
+
+                        $(imageHolder).append(imagePut);
+                        $('#imageDiv').prepend(imageHolder);
+                    }// this is technically end of rating IF ST
+                }
+            })
+        })
+    })
+    */
+
+    for (var i = 0; i < 10; i++) {
+        //console.log(userChoice);
+        var rating = results[i].rating;
+        //console.log(rating);
+
+
+
                     // Only taking action if the photo has an appropriate rating
                     if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                         console.log(userChoice);
@@ -123,12 +162,12 @@ $("#userSearch").click(function(event){
 
                         $(imageHolder).append(imagePut);
                     $('#imageDiv').prepend(imageHolder);
-                    }// this is technically end of rating IF STATEMENT
-                } // end of for statement with results & rating inside
-            }) // end of .then
+                   }// this is technically end of rating IF STATEMENT
+               } // end of for statement with results & rating inside
+           }) // end of .then
 
         }); // end of array button click
-    }); // end user search button click
+   }); // end user search button click
 
 
     $("#imageDiv").on("click", "img", function() {
