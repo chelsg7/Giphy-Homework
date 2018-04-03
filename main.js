@@ -31,7 +31,7 @@ $('.buttonTopic').on("click", this, function(event){
     console.log(userInputButton);
     
     
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInputButton +"&limit=15" + "&api_key=wlD16JyZKmFHTkFbwCyx2SRxbMKnEXNJ";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInputButton +"&limit=30" + "&api_key=wlD16JyZKmFHTkFbwCyx2SRxbMKnEXNJ";
     // Performing our AJAX GET request
     $.ajax({
         url: queryURL,
@@ -81,7 +81,7 @@ $("#userSearch").click(function(event){
             buttonCount++;
         } else {
             alert("there's already a button for that!")
-        };
+        }; // end if else statement
 
         $('.buttonTopicUser').on("click", this, function(event){
             console.log("inside")
@@ -89,7 +89,8 @@ $("#userSearch").click(function(event){
             console.log(userInput);
             console.log(userChoice);
 
-            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userChoice +"&limit=15" + "&api_key=wlD16JyZKmFHTkFbwCyx2SRxbMKnEXNJ";
+
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userChoice +"&limit=30" + "&api_key=wlD16JyZKmFHTkFbwCyx2SRxbMKnEXNJ";
             // Performing our AJAX GET request
             $.ajax({
                 url: queryURL,
@@ -100,12 +101,20 @@ $("#userSearch").click(function(event){
                 // Storing an array of results in the results variable
                 var results = response.data;
                 console.log(results);
-                for (var i = 0; i < results.length; i++) {
+
+                // if ((results[i].rating === "g" && results[i].rating === "pg") !== 10) {
+                //     console.log('Not 10 results!');
+                //     console.log(userChoice);
+                //     var rating = results[i].rating;
+                //     console.log(rating);
+                // }
+
+                for (var i = 0; i < 10; i++) {
                     // Only taking action if the photo has an appropriate rating
                     if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                         console.log(userChoice);
                         var rating = results[i].rating;
-                        //  console.log(rating);
+                        console.log(rating);
                         var stillImageChoice = results[i].images.fixed_height_still.url
                         var imageChoice = results[i].images.fixed_height.url;
                         var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
@@ -113,10 +122,8 @@ $("#userSearch").click(function(event){
 
 
                         $(imageHolder).append(imagePut);
-                    // var imageHeader = $("<div class = 'mx-auto'> <h1 class = ' text-center'" +  ">" + userChoice + "</h1> </div>")
-                    //  $(imageHeader).append(imageHolder);
                     $('#imageDiv').prepend(imageHolder);
-                    }// this is technically end of rating
+                    }// this is technically end of rating IF STATEMENT
                 } // end of for statement with results & rating inside
             }) // end of .then
 
