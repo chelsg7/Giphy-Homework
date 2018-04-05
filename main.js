@@ -110,7 +110,7 @@ $("#userSearch").click(function(event){
                 for (var i = 0; i < results.length; i++) {
                     //console.log(userChoice);
                     var rating = results[i].rating;
-                    //console.log(rating);
+                    console.log(rating);
                     if (rating === "g" || rating === "pg"){
                         allAges.push(results[i]);
                         console.log(allAges.length);
@@ -127,8 +127,8 @@ $("#userSearch").click(function(event){
                     $(event.target).remove();
                 } else if (allAges.length > 10){
                     // console.log(userChoice);
-                    var rating = results[i].rating;
-                    console.log(rating);
+                    var rating2 = allAges[i];
+                    console.log(rating2)
                     var stillImageChoice = results[i].images.fixed_height_still.url
                     var imageChoice = results[i].images.fixed_height.url;
                     var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
