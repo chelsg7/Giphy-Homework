@@ -104,7 +104,7 @@ $("#userSearch").click(function(event){
 
 
                 // I would like to push each indivudual result to an array based on rating. If the array for all ages is not greater than 10, I want to remove the button and not append the images. If the array for all ages is greater than 10, I want to append the images with the rating like normal
-                /* 
+                
                 var adult = [];
                 var allAges = [];
                 for (var i = 0; i < results.length; i++) {
@@ -118,52 +118,53 @@ $("#userSearch").click(function(event){
                         adult.push(results[i]);
                         console.log(adult.length);
                     } // end of first if statement
-
-                    if(allAges.length < 10){
-                        console.log('BAD!');
-                        console.log(userInput); //number
-                        console.log(userChoice); //name
-                    } else if (allAges.length > 10){
-                        // console.log(userChoice);
-                        var rating = results[i].rating;
-                        console.log(rating);
-                        var stillImageChoice = results[i].images.fixed_height_still.url
-                        var imageChoice = results[i].images.fixed_height.url;
-                        var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
-                        var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
-
-
-                        $(imageHolder).append(imagePut);
-                        $('#imageDiv').prepend(imageHolder);
-                    }// this is technically end of rating IF ST
                 }
-            })
-        })
-    })
-    */
 
-    for (var i = 0; i < 10; i++) {
-        //console.log(userChoice);
-        var rating = results[i].rating;
-        //console.log(rating);
-
-
-
-                    // Only taking action if the photo has an appropriate rating
-                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-                        console.log(userChoice);
-                        var rating = results[i].rating;
-                        console.log(rating);
-                        var stillImageChoice = results[i].images.fixed_height_still.url
-                        var imageChoice = results[i].images.fixed_height.url;
-                        var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
-                        var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
+                if(allAges.length < 10){
+                    console.log('BAD!');
+                    console.log(userInput); //number
+                    console.log(userChoice); //name
+                    $(event.target).remove();
+                } else if (allAges.length > 10){
+                    // console.log(userChoice);
+                    var rating = results[i].rating;
+                    console.log(rating);
+                    var stillImageChoice = results[i].images.fixed_height_still.url
+                    var imageChoice = results[i].images.fixed_height.url;
+                    var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
+                    var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
 
 
-                        $(imageHolder).append(imagePut);
+                    $(imageHolder).append(imagePut);
                     $('#imageDiv').prepend(imageHolder);
-                   }// this is technically end of rating IF STATEMENT
-               } // end of for statement with results & rating inside
+                }// this is technically end of rating IF ST
+           // })
+       // })
+    //})
+
+   
+    // for (var i = 0; i < 10; i++) {
+    //     //console.log(userChoice);
+    //     var rating = results[i].rating;
+    //     //console.log(rating);
+
+
+
+    //                 // Only taking action if the photo has an appropriate rating
+    //                 if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+    //                     console.log(userChoice);
+    //                     var rating = results[i].rating;
+    //                     console.log(rating);
+    //                     var stillImageChoice = results[i].images.fixed_height_still.url
+    //                     var imageChoice = results[i].images.fixed_height.url;
+    //                     var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
+    //                     var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
+
+
+    //                     $(imageHolder).append(imagePut);
+    //                 $('#imageDiv').prepend(imageHolder);
+    //                }// this is technically end of rating IF STATEMENT
+    //            } // end of for statement with results & rating inside
            }) // end of .then
 
         }); // end of array button click
