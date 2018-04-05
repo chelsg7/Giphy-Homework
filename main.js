@@ -113,12 +113,14 @@ $("#userSearch").click(function(event){
                     console.log(rating);
                     if (rating === "g" || rating === "pg"){
                         allAges.push(results[i]);
-                        console.log(allAges.length);
+                       // console.log(allAges.length);
                     } else if (rating === "r" || rating === "pg-13"){
                         adult.push(results[i]);
-                        console.log(adult.length);
+                        //console.log(adult.length);
                     } // end of first if statement
                 }
+                // var results = response.data;
+                // var rating = results[i].rating;
 
                 if(allAges.length < 10){
                     console.log('BAD!');
@@ -126,50 +128,23 @@ $("#userSearch").click(function(event){
                     console.log(userChoice); //name
                     $(event.target).remove();
                 } else if (allAges.length > 10){
-                    // console.log(userChoice);
-                    var rating2 = allAges[i];
-                    console.log(rating2)
-                    var stillImageChoice = results[i].images.fixed_height_still.url
-                    var imageChoice = results[i].images.fixed_height.url;
-                    var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
-                    var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
-
-
-                    $(imageHolder).append(imagePut);
-                    $('#imageDiv').prepend(imageHolder);
-                }// this is technically end of rating IF ST
-           // })
-       // })
-    //})
-
-   
-    // for (var i = 0; i < 10; i++) {
-    //     //console.log(userChoice);
-    //     var rating = results[i].rating;
-    //     //console.log(rating);
-
-
-
-    //                 // Only taking action if the photo has an appropriate rating
-    //                 if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-    //                     console.log(userChoice);
-    //                     var rating = results[i].rating;
-    //                     console.log(rating);
-    //                     var stillImageChoice = results[i].images.fixed_height_still.url
-    //                     var imageChoice = results[i].images.fixed_height.url;
-    //                     var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
-    //                     var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
-
-
-    //                     $(imageHolder).append(imagePut);
-    //                 $('#imageDiv').prepend(imageHolder);
-    //                }// this is technically end of rating IF STATEMENT
-    //            } // end of for statement with results & rating inside
-           }) // end of .then
-
+                    for (var i = 0; i < 10; i++) {
+                        var result = allAges[i];
+                        //console.log(userChoice);
+                        var rating = result.rating;
+                        console.log(rating);
+                        // Only taking action if the photo has an appropriate rating
+                        var stillImageChoice = results[i].images.fixed_height_still.url
+                        var imageChoice = results[i].images.fixed_height.url;
+                        var imagePut = $("<img src = " +  " ' "+ stillImageChoice + " ' " +  "data-state = 'still' data-still = " + " ' " +  stillImageChoice +" ' " + "data-animate = " +  " ' "+ imageChoice + " ' " + ">" + "<h2> Rating : " + rating + "</h2>");
+                        var imageHolder = $("<div class = " + " 'text-center  " + userInput + " ' "+  ">" + "</div>");
+                        $(imageHolder).append(imagePut);
+                        $('#imageDiv').prepend(imageHolder);
+                    }// this is technically end of rating IF STATEMENT
+                }
+            }) // end of .then
         }); // end of array button click
-   }); // end user search button click
-
+    }); // end user search button click
 
     $("#imageDiv").on("click", "img", function() {
         // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
