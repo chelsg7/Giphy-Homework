@@ -10,7 +10,7 @@ var buttonCount = 0;
 
 var createButton = function(){
     for(i = 0; i< topics.length; i++){
-        $('#buttonDiv').append("<button class='btn btn-outline-dark btn-lg m-1 buttonTopic' id = "+ buttonCount + "> " + "<i class='fas fa-times-circle'></i> " + topics[i] + "</button>");
+        $('#buttonDiv').append("<button class='btn btn-outline-success btn-lg m-1 buttonTopic' id = "+ buttonCount + "> " + "<i class='fas fa-times-circle'></i> " + topics[i] + "</button>");
         buttonCount++;
         var allTopics = topics[i];
         // console.log(allTopics);
