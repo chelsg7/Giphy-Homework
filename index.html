@@ -13,13 +13,14 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.css">
     
     <!-- FontAwesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/bootstrap4-bubblegum.css" />
     <script src="assets/js/main.js"></script>
 
 
@@ -27,58 +28,52 @@
         Giphy ajax
     </title>
 </head>
-<body class="container-flex bg-dark">
-    <section class="row py-5 bg-primary border-bottom border-success">
+<body id="bg" class="text-center">
+    <section>
         <section class="container">
-            <h1 class="h1 text-center d-block text-success display-3">
-                    <i class="fas fa-question-circle"></i>
+            <div class="card mt-5 bg-info text-primary" id="top">
+                <h1>
                     Giphy AJAX
-                    <i class="fas fa-question-circle"></i>
                 </h1>
-                <h2 class="mx-auto text-center pt-3 text-success h4">
+                <p>
                     This page queries the giphy database and returns still gifs that can be clicked on to animate. Only gifs rated G and PG will be displayed.
-                </h2>
-            <div class="d-block col-10 mx-auto mt-5 py-3 text-center card border border-success bg-dark">
-                <p class= "h4 text-success py-3">
-                    <i class="fas fa-clipboard-list"></i>
-                    Try one of these buttons before adding your own! 
                 </p>
-                <div class = "mx-auto mt-3" id="buttonDiv">
-                    <!-- Buttons will append here -->
+                <div class="bg-success col-8 mx-auto mb-3">
+                    <h5 class="mt-2">
+                        Try one of these buttons before adding your own! 
+                    </h5>
+                    <div class = "mx-auto my-3" id="buttonDiv">
+                        <!-- Buttons will append here -->
+                    </div>
                 </div>
             </div>
-        </section> <!-- end container in header -->
-    </section> <!-- end header row -->
-        <section class = "row container mx-auto">
-            <section class= "col-10 col-md-10 col-lg-4 my-5 py-3 mx-auto h-50 card bg-primary border border-success">
-                <p class="text-center h4 text-success">
-                        What do you want to see ?
-                </p>
+            <div class="card my-3 bg-info text-warning" id="top">
+                <h3 class="my-3 border-bottom col-10 mx-auto">
+                    What do you want to see ?
+                </h3>
                 <form class="text-center" id="searchForm">
-                    <div class="form-group m-2">
+                    <div class="form-group col-8 mx-auto">
                         <!-- <label for="userSearch">
                             Search
                         </label> -->
-                        <input type="text" class="form-control" id="searchTerm" placeholder="Search">
+                        <input type="text" class="form-control text-center" id="searchTerm" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-outline-success btn-lg btn-block text-center" id="userSearch">
+                    <button type="submit" id="userSearch" class="btn btn-warning mb-3">
                         Search
                     </button>
-                    </form>
-            </section> <!-- end of user search form -->
-            <section class=" col-12 col-md-12 col-lg-7 my-5 mx-auto card bg-primary border border-success">
-                <p class="text-center text-success h4 py-3">
-                        <i class="fas fa-images"></i>
-                        Images will appear below
-                        <i class="fas fa-images"></i>
-                    </p>
-                <div class="mx-auto py-3" id="imageDiv">
+                </form>
+            </div> <!-- end of user search form -->
+            <section class="card my-3 bg-info text-primary">
+                <h4 class="my-2 border-bottom col-10 mx-auto">
+                    Images will appear below
+                </h4>
+                <div id="imageDiv">
                     <!-- GIFs returned from site will append here -->
                 </div>
             </section> <!-- end of image appear section -->
         </section> <!-- end row -->
 
     <!--  BOTTOM BODY TAGS -->
- 
+
 </body>
 </html>

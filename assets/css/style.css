@@ -1,21 +1,19 @@
-/* .textHead {
-    color: #95C623
-}
-.orange {
-    color: #E55812
-}
-#head{
-    background-color: #0E4749
+body, html {
+    height: 100%;
 }
 
-#whole {
-    background-color: #002626;
-}
+#bg { 
+    /* The image used */
+    background-image: url("../images/wood.jpg");
 
-.tan {
-    background-color: #EFE7DA;
-}
+    /* Full height */
+    height: 100%; 
 
-#userSearch {
-   background-color: #95C623 
-} */
+    /* Center and scale the image nicely */
+    background-position: center;
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+}
+#top{
+    opacity: .85;
+}

@@ -10,7 +10,7 @@ var buttonCount = 0;
 
 var createButton = function(){
     for(i = 0; i< topics.length; i++){
-        $('#buttonDiv').append("<button class='btn btn-outline-success btn-lg m-1 buttonTopic' id = "+ buttonCount + "> " + "<i class='fas fa-times-circle'></i> " + topics[i] + "</button>");
+        $('#buttonDiv').append("<button class=' btn btn-primary m-1 buttonTopic' id = "+ buttonCount + "> " + "<i class='fas fa-times-circle'></i> " + topics[i] + "</button>");
         buttonCount++;
         var allTopics = topics[i];
         // console.log(allTopics);
@@ -78,7 +78,7 @@ $("#userSearch").click(function(event){
         if ((topics.indexOf(userChoice) === -1)){
             topics.push(userChoice);
             console.log(topics);
-            $('#buttonDiv').append("<button class='btn btn-outline-dark btn-lg m-1 buttonTopicUser' id = " + buttonCount + ">" + "<i class='fas fa-times-circle'></i> " + userChoice + "</button>");
+            $('#buttonDiv').append("<button class='btn btn-primary m-1 buttonTopicUser' id = " + buttonCount + ">" + "<i class='fas fa-times-circle'></i> " + userChoice + "</button>");
             buttonCount++;
         } else {
             alert("there's already a button for that!")
